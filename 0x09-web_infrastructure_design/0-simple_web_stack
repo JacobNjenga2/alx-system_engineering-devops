@@ -1,0 +1,23 @@
+https://REPLACE_WITH_YOUR_DIAGRAM_URL
+
+Components:
+- 1 server (Ubuntu) at 8.8.8.8
+- 1 web server: Nginx (listens on :80, serves static files, reverse-proxies to app server)
+- 1 application server: runs the application code (generates dynamic responses)
+- 1 application files: the deployed codebase on the server
+- 1 database: MySQL (stores persistent data)
+- 1 domain: foobar.com with www record pointing to 8.8.8.8
+
+Explanations:
+- What is a server: a physical/virtual machine running an OS and services to handle requests
+- Role of the domain name: human-friendly name that maps to an IP so users can reach the service
+- DNS record type of www in www.foobar.com: A record (points directly to 8.8.8.8)
+- Role of the web server: terminate HTTP, serve static assets, proxy requests to the app server
+- Role of the application server: execute app code and return dynamic content (HTML/JSON)
+- Role of the database: persist and query data via SQL
+- Server-to-user communication: HTTP over TCP/IP on port 80
+
+Issues (single-server stack):
+- SPOF: if the server or any component fails, the entire site is down
+- Downtime on deploys/maintenance: restarting web/app can interrupt service
+- No scalability: cannot handle high QPS; no load balancing or horizontal scale
